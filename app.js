@@ -63,12 +63,10 @@ app.use((err, req, res, next) => {
     typeof err.message === "string" &&
     err.message.includes("already registered")
   ) {
-    return res
-      .status(409)
-      .json({
-        status: "fail",
-        message: "A user with the given username is already registered",
-      });
+    return res.status(409).json({
+      status: "fail",
+      message: "A user with the given username is already registered",
+    });
   }
   if (err.code === 11000 && err.keyPattern && err.keyPattern.email) {
     return res.status(409).json({
